@@ -1,21 +1,30 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package secondproject;
+Tarefa 2 - sumarizar para cada ano de lançamento:
 
-/**
- *
- * @author MatheusFrey
++ número de reviews deste ano
++ percentual de ‘Mediocre’ reviews (sobre o número de reviews deste ano)
++ média aritmética dos scores
++ desvio padrão populacional dos scores
++ melhor jogo (basta indicar um entre os de maior score)
++ pior jogo (basta indicar um entre os de menor score)
+
+Ao final: qual o ano em que foi lançado um maior número de jogos do gênero ‘Action’?
  */
+package SecondProject;
+
 public class SecondProject {
 
-    /**
-     * @param args the command line arguments
-     */
+    private static final String archive = "C:\\Users\\MatheusFrey\\Downloads\\game-reviews.csv";
+
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        SimpleReader f = new SimpleReader(archive);
+
+        String s = f.readLine();
+
+        while (s != null) {
+            System.out.println(s);
+            s = f.readLine();
+        }
     }
-    
 }
