@@ -6,13 +6,7 @@ public class SecondProject {
 
     protected static class game {
 
-        int year;
-        String tittle;
-        String plataform;
-        String score_phrase;
-        String score;
-        String genre;
-        String editors_choice;
+   
 
     }
 
