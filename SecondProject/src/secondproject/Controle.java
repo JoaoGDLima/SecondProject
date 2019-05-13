@@ -1,24 +1,28 @@
 package secondproject;
 
+import java.util.ArrayList;
+import java.util.TreeMap;
+
 public class Controle {
     int reviews;
     int mediocres;
     double percMediocre;
     double somaScore;
-    double desvioScore;
     String melhorJogo;
     double scoreMelhor;
     String piorJogo;
     double scorePior;
+    ArrayList<Double> scores;
 
-    public Controle(double score, String nome) {
+    public Controle(Double score, String nome) {
         reviews = 0;
         percMediocre = 0;
-        desvioScore = 0;
         melhorJogo = nome;
         scoreMelhor = score;
         piorJogo = nome;
         scorePior = score;
+        scores = new ArrayList();
+        scores.add(score);
     }
     
     public void contReview(){
@@ -55,5 +59,13 @@ public class Controle {
     
     public String percMediocre(){
         return (this.mediocres*100/this.reviews) + "%";
+    }
+    
+    public double desvioPadrao(){
+        double soma = 0;
+        for (int i = 0; i < this.scores.size(); i++) {
+            soma = soma + Math.pow(this.scores.get(i) - this.mediaScore(), 2);
+        }
+        return Math.sqrt(soma/this.reviews);
     }
 }

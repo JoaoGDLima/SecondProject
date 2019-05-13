@@ -1,6 +1,8 @@
 package secondproject;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class SecondProject {
@@ -20,17 +22,17 @@ public class SecondProject {
             String[] vets = s.split(";");
             String nome = vets[0].toString();
             String avaliacao = vets[2].toString();
-            Double score =  Double.parseDouble(vets[3].toString());
+            Double score = Double.parseDouble(vets[3].toString());
             int ano = Integer.parseInt(vets[6].toString());
-            
+
             Controle control = null;
             // Vetor na posição 6 contém o ano
             if (!map.containsKey(ano)) {
-                control = new Controle(score, nome);                
+                control = new Controle(score, nome);
             } else {
                 control = map.get(ano);
             }
-            
+
             control.contReview();
             control.contMediocres(avaliacao);
             control.somaScore(score);
@@ -42,11 +44,20 @@ public class SecondProject {
         }
 
         // Teste
-        System.out.println(map.get(2016).reviews + "");
-        System.out.println(map.get(2016).mediocres + " : " + map.get(2016).percMediocre());
-        System.out.println(map.get(2016).somaScore + "");
-        System.out.println(map.get(2016).mediaScore() + "");
-        System.out.println(map.get(2016).melhorJogo + ": " + map.get(2016).scoreMelhor);
-        System.out.println(map.get(2016).piorJogo + ": " + map.get(2016).scorePior);
+        Set<Integer> anos = map.keySet();
+
+        for (int ano: anos) {
+            System.out.println("-------------------------------------------------------------");
+            System.out.println("Dados do ano " + ano);
+            System.out.println("-------------------------------------------------------------");            
+            System.out.println("Número de reviews:" + map.get(ano).reviews + "");
+            System.out.println("Percentual de 'Mediocre':" + map.get(ano).mediocres + " : " + map.get(2016).percMediocre());
+            System.out.println("média aritmética:" + map.get(ano).mediaScore() + "");
+            System.out.println("Desvio padrão:" + map.get(ano).desvioPadrao());
+            System.out.println("Melhor jogo: " + map.get(ano).melhorJogo + ": " + map.get(2016).scoreMelhor);
+            System.out.println("Pior jogo:" + map.get(ano).piorJogo + ": " + map.get(2016).scorePior);
+            System.out.println("-------------------------------------------------------------");
+        }
+
     }
 }
