@@ -1,7 +1,11 @@
 package secondproject;
 
+import java.util.AbstractSet;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Controle {
     int reviews;
@@ -12,17 +16,36 @@ public class Controle {
     double scoreMelhor;
     String piorJogo;
     double scorePior;
+    int contAction;
     ArrayList<Double> scores;
+    Map<String, Double> jogos;
 
     public Controle(Double score, String nome) {
-        reviews = 0;
-        percMediocre = 0;
-        melhorJogo = nome;
-        scoreMelhor = score;
-        piorJogo = nome;
-        scorePior = score;
-        scores = new ArrayList();
-        scores.add(score);
+        this.reviews = 0;
+        this.percMediocre = 0;
+        this.melhorJogo = nome;
+        this.scoreMelhor = score;
+        this.piorJogo = nome;
+        this.scorePior = score;
+        this.scores = new ArrayList();
+        this.scores.add(score);
+        this.contAction = 0;
+        this.jogos = new TreeMap<String, Double>();
+    }
+    
+    public void addJogo(String jogo, Double score){
+        this.jogos.put(jogo, score);
+    }
+    
+    public void addAction(String avaliacao, String jogo){
+        if (avaliacao.equals("Action")&&!this.jogos.containsKey(jogo)) 
+        {
+            this.contAction ++;
+        }
+    }
+    
+    public void addScore(Double s){
+        this.scores.add(s);
     }
     
     public void contReview(){

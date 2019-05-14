@@ -19,11 +19,12 @@ public class SecondProject {
         Map<Integer, Controle> map = new TreeMap<Integer, Controle>();
 
         while (s != null) {
-            
+
             String[] vets = s.split(";");
             String nome = vets[0].toString();
             String avaliacao = vets[2].toString();
             Double score = Double.parseDouble(vets[3].toString());
+            String genero = vets[4].toString();
             int ano = Integer.parseInt(vets[6].toString());
 
             Controle control = null;
@@ -39,6 +40,9 @@ public class SecondProject {
             control.somaScore(score);
             control.verificaMelhorJogo(score, nome);
             control.verificaPiorJogo(score, nome);
+            control.addScore(score);
+            control.addAction(genero, nome);
+            control.addJogo(nome, score);
             map.put(ano, control);
 
             s = f.readLine();
@@ -46,11 +50,12 @@ public class SecondProject {
 
         // Teste
         Set<Integer> anos = map.keySet();
-
-        for (int ano: anos) {
+        int qtdAction = 0;
+        int AnoAction = 0;
+        for (int ano : anos) {
             System.out.println("-------------------------------------------------------------");
             System.out.println("Dados do ano " + ano);
-            System.out.println("-------------------------------------------------------------");            
+            System.out.println("-------------------------------------------------------------");
             System.out.println("Número de reviews: " + map.get(ano).reviews + "");
             System.out.println("Percentual de 'Mediocre': " + map.get(ano).mediocres + " : " + map.get(ano).percMediocre());
             System.out.println("média aritmética: " + map.get(ano).mediaScore() + "");
@@ -58,7 +63,13 @@ public class SecondProject {
             System.out.println("Melhor jogo: " + map.get(ano).melhorJogo + ": " + map.get(ano).scoreMelhor);
             System.out.println("Pior jogo: " + map.get(ano).piorJogo + ": " + map.get(ano).scorePior);
             System.out.println("-------------------------------------------------------------");
+            
+            if (map.get(ano).contAction>qtdAction) {
+                qtdAction = map.get(ano).contAction;
+                AnoAction = ano;
+            }
         }
-
+        
+        System.out.println("Ano em que foi lançado um maior número de jogos do gênero ‘Action’: "+AnoAction);
     }
 }
